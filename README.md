@@ -56,3 +56,10 @@ dotnet test
 
 ## Help
 To learn more about the template go to the [project website](https://github.com/jasontaylordev/CleanArchitecture). Here you can find additional guidance, request new features, report a bug, and discuss the template with other users.
+
+## To Update database
+- Update the entity 
+- Run this command to create database migration: 
+    dotnet ef migrations add calculator -p ../Infrastructure/Infrastructure.csproj --startup-project .\Web\csproj
+- Run this command to update the database 
+    dotnet ef database update -p ../Infrastructure/Infrastructure.csproj 
