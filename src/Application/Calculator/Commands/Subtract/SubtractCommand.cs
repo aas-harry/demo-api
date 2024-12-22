@@ -13,6 +13,6 @@ public class SubtractCommandCommandHandler(ICalculatorService calculatorService)
     public async Task<decimal> Handle(SubtractCommand request, CancellationToken cancellationToken)
     {
 
-        return await Task.Run(() => calculatorService.Add(request.Minuend, request.Subtrahend), cancellationToken);
+        return await Task.Run(() => calculatorService.Subtract(request.Minuend, request.Subtrahend), cancellationToken);
     }
 }

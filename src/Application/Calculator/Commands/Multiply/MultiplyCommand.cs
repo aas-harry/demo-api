@@ -13,6 +13,6 @@ public class MultiplyCommandHandler(ICalculatorService calculatorService) : IReq
     public async Task<decimal> Handle(MultiplyCommand request, CancellationToken cancellationToken)
     {
 
-        return await Task.Run(() => calculatorService.Add(request.Value1, request.Value2), cancellationToken);
+        return await Task.Run(() => calculatorService.Multiply(request.Value1, request.Value2), cancellationToken);
     }
 }
