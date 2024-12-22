@@ -178,6 +178,58 @@
         }
       }
     },
+    "/api/Calculators/items": {
+      "get": {
+        "tags": [
+          "Calculators"
+        ],
+        "operationId": "GetItemsPagination",
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 2
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedListOfCalculationItemDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/TodoItems": {
       "get": {
         "tags": [
@@ -920,6 +972,75 @@
   },
   "components": {
     "schemas": {
+      "PaginatedListOfCalculationItemDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CalculationItemDto"
+            }
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasPreviousPage": {
+            "type": "boolean"
+          },
+          "hasNextPage": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CalculationItemDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "value1": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "value2": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "result": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "operation": {
+            "$ref": "#/components/schemas/CalculationOperation"
+          }
+        }
+      },
+      "CalculationOperation": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "None",
+          "Add",
+          "Subtract",
+          "Multiply",
+          "Divide"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "PaginatedListOfTodoItemBriefDto": {
         "type": "object",
         "additionalProperties": false,

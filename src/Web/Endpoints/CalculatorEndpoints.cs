@@ -2,6 +2,8 @@
 using demo_app.Application.Calculator.Commands.Divide;
 using demo_app.Application.Calculator.Commands.Multiply;
 using demo_app.Application.Calculator.Commands.Subtract;
+using demo_app.Application.Calculator.Queries;
+using demo_app.Application.Common.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace demo_app.Web.Endpoints;
@@ -14,8 +16,17 @@ public class CalculatorEndpoints: EndpointGroupBase
             .MapPost(Multiply, "multiply")
             .MapPost(Divide, "divide")
             .MapPost(Add, "add")
-            .MapPost(Subtract, "subtract");
+            .MapPost(Subtract, "subtract")
+            .MapGet(GetItemsPagination, "items");
     }
+
+    public async Task<Ok<PaginatedList<CalculationItemDto>>> GetItemsPagination(ISender sender, [AsParameters] GetCalculationItemsWithPaginationQuery query)
+    {
+        var result = await sender.Send(query);
+
+        return TypedResults.Ok(result);
+    }
+
 
     /// <summary>
     /// Multiply operation
