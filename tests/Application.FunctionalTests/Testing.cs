@@ -1,4 +1,5 @@
-﻿using demo_app.Domain.Constants;
+﻿using System.Linq.Expressions;
+using demo_app.Domain.Constants;
 using demo_app.Infrastructure.Data;
 using demo_app.Infrastructure.Identity;
 using MediatR;
@@ -136,6 +137,16 @@ public partial class Testing
 
         return await context.Set<TEntity>().CountAsync();
     }
+
+    public static async Task<int> CountAsync<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
+    {
+        using var scope = _scopeFactory.CreateScope();
+
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+        return await context.Set<TEntity>().CountAsync(predicate);
+    }
+
 
     [OneTimeTearDown]
     public async Task RunAfterAnyTests()

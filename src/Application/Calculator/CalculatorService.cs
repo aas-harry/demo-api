@@ -59,10 +59,4 @@ public class CalculatorService : ICalculatorService
         return minuend - subtrahend;
     }
 
-    public async Task<decimal> AddAsync(decimal val1, decimal val2)
-    {
-        // Add delay for 2 secs to simulate long process
-        await Task.Delay(2000);
-        return val1 + val2;
-    }
 }

@@ -5,11 +5,16 @@ using demo_app.Application.Common.Models;
 namespace demo_app.Application.Calculator.Queries;
 
 
-public record GetCalculationItemsWithPaginationQuery : IRequest<PaginatedList<CalculationItemDto>>
+public record GetCalculationItemsWithPaginationQuery : IRequest<PaginatedList<CalculationItemDto>>, IUserId
 {
-    public int UserId { get; init; }
+    public Guid? UserId { get; private set; }
     public int PageNumber { get; init; } = 1;
     public int PageSize { get; init; } = 10;
+
+    void IUserId.SetUserId(Guid id)
+    {
+        UserId = id;
+    }
 }
 
 public class GetCalculationItemsWithPaginationQueryHandler : IRequestHandler<GetCalculationItemsWithPaginationQuery, PaginatedList<CalculationItemDto>>

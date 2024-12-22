@@ -46,7 +46,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/Calculators/divide": {
@@ -89,7 +94,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/Calculators/add": {
@@ -132,7 +142,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/Calculators/subtract": {
@@ -175,7 +190,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/Calculators/items": {
@@ -186,7 +206,7 @@
         "operationId": "GetItemsPagination",
         "parameters": [
           {
-            "name": "UserId",
+            "name": "PageNumber",
             "in": "query",
             "required": true,
             "schema": {
@@ -196,16 +216,6 @@
             "x-position": 1
           },
           {
-            "name": "PageNumber",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "x-position": 2
-          },
-          {
             "name": "PageSize",
             "in": "query",
             "required": true,
@@ -213,7 +223,7 @@
               "type": "integer",
               "format": "int32"
             },
-            "x-position": 3
+            "x-position": 2
           }
         ],
         "responses": {
@@ -227,7 +237,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/TodoItems": {
