@@ -32,7 +32,7 @@ public static class DependencyInjection
 
         builder.Services.AddOpenApiDocument((configure, sp) =>
         {
-            configure.Title = "demo_app API";
+            configure.Title = "Demo API";
 
             // Add JWT
             configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
